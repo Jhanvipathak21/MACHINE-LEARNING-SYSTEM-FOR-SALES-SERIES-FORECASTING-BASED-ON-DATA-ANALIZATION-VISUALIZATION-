@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <title>Big Mart Sales Prediction</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css')}}"> -->
+    <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/nav.css')}}"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <nav class="navbar">
+        <div class="max-width">
+            <div class="logo"><img src="{{url_for('static', filename='img/logo.png')}}"
+                    alt=""><a>Forcast<span>Master.</span></a></div>
+            <ul class="menu">
+                <li><a href="{{url_for('uploader')}}" class="menu-btn"> <i class="fas fa-arrow-left"></i>&nbsp; Back</a>
+                </li>
+                <li><a href="{{url_for('logout')}}" class="menu-btn"><i class="fas fa-power-off"></i>&nbsp; Logout</a>
+                </li>
+            </ul>
+            <div class="menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <style>
+        body {
+            height: 100%;
+            margin: auto;
+            padding: 0;
+            /* background: #5f2c82;
+            background: -webkit-linear-gradient(to right, #49a09d, #5f2c82);
+            background: linear-gradient(to right, #49a09d, #5f2c82); */
+            /* background: #BA5370;
+            background: -webkit-linear-gradient(to right, #F4E2D8, #BA5370);
+            background: linear-gradient(to right, #F4E2D8, #BA5370); */
+            background: url("/static/img/sales2.png") center/cover no-repeat fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            color: #fff;
+        }
+
+        .wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            background-position: center center;
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.8);
+            ;
+            padding: 30px;
+            border-radius: 10px;
+            width: 70%;
+            margin: 0 auto;
+        }
+
+        h1 {
+            padding-top: 20px;
+            font-size: 36px;
+            text-align: center;
+            margin-top: 95px;
+            color: #9D00FF;
+        }
+
+        form {
+            margin-top: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"],
+        select {
+            width: 100%;
+            height: 40px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            color: #333;
+            background-color: #fff;
+        }
+
+        select.chosenn option {
+            color: #333;
+            background-color: #fff;
+        }
+
+        select.chosenn {
+            width: 100%;
+            height: 40px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            color: #333;
+            background-color: #fff;
+        }
+
+        input[type="submit"],
+        input[type="reset"] {
+            width: 100%;
+            height: 40px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #3498db;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover,
+        input[type="reset"]:hover {
+            background-color: #2980b9;
+        }
+
+        .ph-area {
+            top: 10px;
+            left: 10px;
+            pointer-events: none;
+            transition: all 0.2s ease-in-out;
+            font-size: 15px;
+            color: white;
+        }
+
+        input:focus~.ph-area,
+        select:focus~.ph-area {
+            top: -18px;
+            left: 6px;
+            font-size: 12px;
+            color: black;
+            background-color: #fff;
+            padding: 0 5px;
+        }
+
+        input[value="Show Predicted results"] {
+            background-color: #27ae60;
+        }
+
+        input[value="Show Predicted results"]:hover {
+            background-color: #219f54;
+        }
+
+        input[value="Reset"] {
+            background-color: #e74c3c;
+        }
+
+        input[value="Reset"]:hover {
+            background-color: #c0392b;
+        }
+
+        .div {
+            height: 15vh;
+            display: flex;
+            /* justify-content: center;  */
+            align-items: center;
+        }
+
+        .div a {
+            height: 30px;
+            width: 30px;
+            background-color: #f5f6fa;
+            border-radius: 50px;
+            text-align: center;
+            margin: 5px;
+            line-height: 30px;
+            /* box-shadow: 1px 4px 2px 2px #dcdde1;  */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .div a i {
+            transition: all 0.3s linear;
+        }
+
+        .div a:hover i {
+            transform: scale(1.5);
+            color: #f5f6fa;
+        }
+
+        .div a:before {
+            content: "";
+            width: 120%;
+            height: 120%;
+            position: absolute;
+            top: 90%;
+            left: -50%;
+            background-color: #00a8ff;
+            transform: rotate(60deg);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .max-width {
+            max-width: 1300px;
+            padding: 0 80px;
+            margin: auto;
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        /*navbar*/
+        .navbar {
+            position: absolute;
+            left: 0%;
+            top: 0%;
+            width: 100%;
+            z-index: 999;
+            padding: 20px 0;
+            font-family: 'Ubuntu', sans-serif;
+            transition: all 0.3s ease;
+            color: rgb(216, 45, 102);
+            background: black;
+        }
+
+        .navbar .max-width {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .navbar .logo img {
+            height: 50px;
+            width: 50px;
+            object-fit: cover;
+            border-radius: 35px;
+            margin-left: -40px;
+            margin-top: -30px;
+        }
+
+        .navbar .logo a {
+            color: #faf8f8;
+            font-size: 35px;
+            font-weight: 600;
+            text-align: left;
+        }
+
+        .navbar .logo a span {
+            color: crimson;
+            transition: all 0.3s ease;
+        }
+
+        .navbar .menu li {
+            list-style: none;
+            display: inline-block;
+        }
+
+        .navbar .menu li a {
+            display: block;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 500;
+            margin-left: 50px;
+            transition: color 0.3s ease;
+            text-decoration: none;
+            text-align: right;
+
+        }
+
+        .navbar .menu li a:hover {
+            color: crimson;
+        }
+
+        /* menu btn styling */
+        .menu-btn {
+            color: #fff;
+            font-size: 23px;
+            cursor: pointer;
+            display: none;
+        }
+
+        /* responsive media query start */
+        @media (max-width: 1104px) {
+            .about .about-content .left img {
+                height: 350px;
+                width: 350px;
+            }
+        }
+
+        @media (max-width: 991px) {
+            .max-width {
+                padding: 0 50px;
+            }
+        }
+
+        @media (max-width: 947px) {
+            .menu-btn {
+                display: block;
+                z-index: 999;
+            }
+
+            .menu-btn i.active:before {
+                content: "\f00d";
+            }
+
+            .navbar .menu {
+                position: fixed;
+                height: 100vh;
+                width: 100%;
+                left: -100%;
+                top: 0;
+                background: #111;
+                text-align: center;
+                padding-top: 80px;
+                transition: all 0.3s ease;
+            }
+
+            .navbar .menu.active {
+                left: 0;
+            }
+
+            .navbar .menu li {
+                display: block;
+            }
+
+            .navbar .menu li a {
+                display: inline-block;
+                margin: 20px 0;
+                font-size: 25px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h1>
+        <div style="text-align:center">
+            <b>Sales Prediction</b>
+        </div>
+    </h1>
+    <br>
+
+
+    <div class="wrapper">
+        <div class="container my-5">
+            <div class="row">
+                <div class="col-md-10 col-sm-6 mx-auto">
+                    <form class="" action="/predict" method="post">
+
+                        <div class="form-group">
+                            <input type="text" name="item_weight" id="item_weight" class="form-control" required>
+                            <label for="item_weight" class="ph-area">Enter Item Weight</label>
+                        </div>
+
+                        <div class="form-group">
+                            <select class="form-control" name="item_fat_content" required="required">
+                                <option value="" selected>Item Fat Content</option>
+                                <option value="1">Low Fat</option>
+                                <option value="2">Regular</option>
+                                <option value="0">High Fat</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" name="item_visibility" id="item_visibility" class="form-control"
+                                required>
+                            <label for="item_visibility" class="ph-area">Enter Item Visibility</label>
+                        </div>
+
+                        <div class="form-group">
+                            <select class="form-control chosenn" name="item_type" required="required">
+                                <option value="" selected>Item Type</option>
+                                <option value="0">Baking Goods</option>
+                                <option value="1">Breads</option>
+                                <option value="2">Breakfast</option>
+                                <option value="3">Canned</option>
+                                <option value="4">Dairy</option>
+                                <option value="5">Frozen Foods</option>
+                                <option value="6">Fruits and Vegetables</option>
+                                <option value="7">Hard Drinks</option>
+                                <option value="8">Health and Hygiene</option>
+                                <option value="9">Household</option>
+                                <option value="10">Meat</option>
+                                <option value="11">Others</option>
+                                <option value="12">Seafood</option>
+                                <option value="13">Snack Foods</option>
+                                <option value="14">Soft Drinks</option>
+                                <option value="15">Starchy Foods</option>
+                            </select>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" name="item_mrp" id="item_mrp" class="form-control" required>
+                            <label for="item_mrp" class="ph-area">Enter Item MRP</label>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" name="outlet_establishment_year" id="outlet_establishment_year"
+                                class="form-control" required>
+                            <label for="outlet_establishment_year" class="ph-area">Outlet Establishment Year
+                                (YYYY)</label>
+                        </div>
+
+                        <div class="form-group">
+                            <select class="form-control chosenn" name="outlet_size" required="required">
+                                <option value="" selected>outlet_size</option>
+                                <option value="0">High</option>
+                                <option value="1">Medium</option>
+                                <option value="2">Small</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <select class="form-control chosenn" name="outlet_location_type" required="required">
+                                <option value="" selected>outlet_location_type</option>
+                                <option value="0">Tier 1</option>
+                                <option value="1">Tier 2</option>
+                                <option value="2">Tier 3</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <select class="form-control chosenn" name="outlet_type" required="required">
+                                <option value="" selected>outlet_type</option>
+                                <option value="0">Grocery Store</option>
+                                <option value="1">Supermarket Type1</option>
+                                <option value="2">Supermarket Type2</option>
+                                <option value="3">Supermarket Type3</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary" value="Submit">
+                            <input type="reset" class="btn btn-danger" value="Reset">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

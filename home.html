@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+    <nav class="navbar">
+        <div class="max-width">
+            <div class="logo"><img src="{{url_for('static', filename='img/logo.png')}}"
+                    alt=""><a>Forcast<span>Master.</span></a></div>
+            <ul class="menu">
+                <li><a href="#home" class="menu-btn">Home</a></li>
+                <li><a href="#about" class="menu-btn">About</a></li>
+                <li><a href="#features" class="menu-btn">Features</a></li>
+                <li><a href="#skills" class="menu-btn">Skills</a></li>
+                <li><a href="#teams" class="menu-btn">Teams</a></li>
+                <li><a href="#contact" class="menu-btn">Contact</a></li>
+                <li><a href="{{url_for('gallery')}}" class="menu-btn">Gallery</a></li>
+                <!-- <li><a href="{{url_for('logout')}}" class="menu-btn">Log Out</a></li> -->
+            </ul>
+            <!-- <div class="menu-btn">
+                <i class="fas fa-bars"></i>
+            </div> -->
+        </div>
+    </nav>
+
+</head>
+
+<body>
+    <div class="scroll-up-btn">
+        <i class="fas fa-angle-up"></i>
+    </div>
+
+
+    <!-- home section start -->
+
+    <!-- home section start -->
+    <section class="home" id="home">
+
+        <div class="max-width">
+            <div class="home-content">
+                <div class="text-1">Revolutionize Your Sales Forecasting with ForecastMaster</div>
+                <div class="text-2">Maximize your sales potential with Sales Tracker | ML's advanced machine learning
+                    technology for accurate sales forecasting <span class="typing"></span></div>
+                <a class="btnone" href="{{url_for('logsin')}}" role="button"> START </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- about section start -->
+    <section class="about" id="about">
+        <div class="max-width">
+            <h2 class="title">About</h2>
+            <div class="about-content">
+                <div class="column left">
+                    <img src="{{url_for('static', filename='img/ml_1.jpeg')}}" alt="">
+                </div>
+                <div class="column right">
+                    <div class="text">
+                        <h1>Machine Learning Methods for Sales Predcition</h1><span class="typing-2"></span>
+                    </div>
+                    <p>This method involves using historical sales data to train a model that can predict future sales.
+                        The model can take into account factors such as past sales, marketing campaigns, and economic
+                        indicators to make its predictions.Another popular method for predicting sales is time series
+                        analysis. This method involves using historical sales data to identify patterns and trends in
+                        sales over time. The model can then use these patterns to make predictions about future
+                        sales.Another approach is using decision tree-based algorithms like Random Forest, Gradient
+                        Boosting etc. </p>
+                    <a href="#">READ MORE </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- features section start -->
+    <section class="features" id="features">
+        <div class="max-width">
+            <h2 class="title">Features</h2>
+            <div class="carousel owl-carousel">
+                <div class="card">
+                    <div class="box">
+                        <i class="fas solid fa-book"></i>
+                        <div class="text">Historical sales Data</div>
+                        <p>The most important feature for sales prediction is
+                            historical sales data.<br>The ML algorithm can be trained on this data to identify patterns
+                            and trends in sales over time.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="box">
+                        <i class="fas fa-chart-line"></i>
+                        <div class="text">Market trends and seasonality</div>
+                        <p>Incorporating market trends and seasonality can help improve the accuracy
+                            of sales prediction. <br>For example, sales of winter clothing are likely to
+                            be higher in winter months than in summer months</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="box">
+                        <i class="fas fa-business-time"></i>
+                        <div class="text">Economic indicators</div>
+                        <p> Economic indicators such as GDP, inflation,
+                            and interest rates can impact sales.<br> By incorporating these indicators into sales
+                            prediction using ML, businesses
+                            can adjust their sales strategies accordingly.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="box">
+                        <i class="fas fa-check"></i>
+                        <div class="text">Product features</div>
+                        <p> Product features such as price, quality,
+                            and availability can impact sales.<br>By analyzing these features using ML algorithms,
+                            businesses can identify which products
+                            are likely to sell better in specific markets.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="box">
+                        <i class="fas fa-user"></i>
+                        <div class="text">Customer behavior</div>
+                        <p>Analyzing customer behavior such as purchase history, demographics, and preferences
+                            can provide valuable insights for sales prediction. <br>This can help identify customer
+                            segments with high sales potential and optimize
+                            marketing strategies to target them effectively.</p>
+                    </div>
+
+                </div>
+            </div>
+    </section>
+
+
+
+    <!-- skills section start -->
+    <section class="skills" id="skills">
+        <div class="max-width">
+            <h2 class="title">Technology Used</h2>
+            <div class="skills-content">
+                <div class="column left">
+                    <div class="text">Python</div>
+                    <p>Python is an interpreted, object-oriented, high-level programming language with dynamic
+                        semantics. Its high-level built in data structures, combined with dynamic typing and dynamic
+                        binding, make it very attractive for Rapid Application Development, as well as for use as a
+                        scripting or glue language to connect existing components together. Python's simple, easy to
+                        learn syntax emphasizes readability and therefore reduces the cost of program maintenance.
+                        Python supports modules and packages, which encourages program modularity and code reuse. </p>
+                    <a href="https://docs.python.org/3/library/">Read more</a>
+                </div>
+                <div class="column right">
+                    <div class="bars">
+                        <div class="info">
+                            <span>Python</span>
+                        </div>
+                        <div class="line python"></div>
+                    </div>
+                    <div class="bars">
+                        <div class="info">
+                            <span>HTML</span>
+                        </div>
+                        <div class="line html"></div>
+                    </div>
+                    <div class="bars">
+                        <div class="info">
+                            <span>CSS</span>
+                        </div>
+                        <div class="line css"></div>
+                    </div>
+                    <div class="bars">
+                        <div class="info">
+                            <span>Javascript</span>
+                        </div>
+                        <div class="line js"></div>
+                    </div>
+                    <div class="bars">
+                        <div class="info">
+                            <span>Jinja2</span>
+                        </div>
+                        <div class="line jinja2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- teams section start -->
+    <section class="teams" id="teams">
+        <div class="max-width">
+            <h2 class="title">Our Team</h2>
+            <div class="carousel owl-carousel">
+                <div class="card">
+                    <div class="box">
+                        <img src="{{url_for('static', filename='img/P1.jpeg')}}" alt="">
+                        <div class="text">Khushi Tanwar</div>
+                        <p>BCA 3rd Year <br> Enrollment Number:00918002020</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="box">
+                        <img src="{{url_for('static', filename='img/P2.jpeg')}}" alt="">
+                        <div class="text">Vidhi Goel</div>
+                        <p>BCA 3rd Year <br> Enrollment Number:02418002020</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="box">
+                        <img src="{{url_for('static', filename='img/P3.jpeg')}}" alt="">
+                        <div class="text">Jhanvi Pathak</div>
+                        <p>BCA 3rd Year <br> Enrollment Number:35318002020 </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- contact section start -->
+    <section class="contact" id="contact">
+        <div class="max-width">
+            <h2 class="title">Contact me</h2>
+            <div class="contact-content">
+                <div class="column left">
+                    <div class="text">Get in Touch</div>
+                    <p>To know more, Contact us..!!!!</p>
+                    <div class="icons">
+                        <div class="row">
+                            <i class="fas fa-user"></i>
+                            <div class="info">
+                                <div class="head">Name</div>
+                                <div class="sub-title">ForcastMaster.</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div class="info">
+                                <div class="head">Address</div>
+                                <div class="sub-title">New Delhi</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <i class="fas fa-envelope"></i>
+                            <div class="info">
+                                <div class="head">Email</div>
+                                <div class="sub-title">ForcastMaster.@gmail.com</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column right">
+                    <div class="text">Message me</div>
+                    <form2 action="#">
+                        <div class="fields">
+                            <div class="field name">
+                                <input type="text" placeholder="Name" required>
+                            </div>
+                            <div class="field email">
+                                <input type="email" placeholder="Email" required>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <input type="text" placeholder="Subject" required>
+                        </div>
+                        <div class="field textarea">
+                            <textarea cols="30" rows="10" placeholder="Message.." required></textarea>
+                        </div>
+                        <div class="button-area">
+                            <button type="submit">Send message</button>
+                        </div>
+                    </form2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- footer section start -->
+    <footer>
+        <span>Created By <a href="#####">ForcastMaster.</a> | <span class="far fa-copyright"></span> 2023 All rights
+            reserved.</span>
+    </footer>
+    <!-- <script src="C:\Users\hp\OneDrive\Desktop\Major_Project\script.js"></script> -->
+
+    <script src="{{url_for('static', filename='js/script.js')}}"></script>
+
+</body>
+
+</html>

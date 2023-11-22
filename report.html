@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Exploratory Data Analysis</title>
+    <style>
+        /* Center all content inside the body */
+        body {
+            text-align: center;
+            background-color: black;
+        }
+
+        /* Styles for the button */
+        .button {
+            background-color: rgb(57, 163, 212);
+            /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Styles for the button on hover */
+        .button:hover {
+            background-color: #36c0ad;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Exploratory Data Analysis</h1>
+    <h2>Training Data PANDAS PROFILE REPORT</h2>
+    <!-- <iframe width="90%" height="500" srcdoc="{{ train_profile_html }}"></iframe> -->
+    {{ train_profile_html|safe }}
+
+    <!-- Button -->
+    <a href="{{url_for('Prediction')}}">
+        <button class="button">CLICK TO TRAIN|TEST</button>
+    </a>
+
+</body>
+
+</html>
